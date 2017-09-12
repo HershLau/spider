@@ -14,7 +14,7 @@ var catchFirstUrl = 'http://www.tianyancha.com/search/',
     pageUrls = [],
     pageNum = 1
 
-var proxy = 'http://211.142.22.24:8080';
+var proxy = 'http://114.215.103.121:8081';
 
 var header = {
   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -37,8 +37,6 @@ function start(){
 
     pageUrls.forEach(function(pageUrl){
       superagent.get(pageUrl)
-          .set('header', header)
-          .proxy(proxy)
           .end(function(err,pres){
             console.log('fetch ' + pageUrl + ' successful');
             if (err) {
@@ -55,36 +53,36 @@ function start(){
             console.log(urlsArray)
             console.log(urlsArray[Math.floor(Math.random()*urlsArray.length)])
 
-            // superagent.get(urlsArray[Math.floor(Math.random()*urlsArray.length)])
-            //     .end(function(err,sres){
-            //       // 常规的错误处理
-            //       if (err) {
-            //         console.log(err);
-            //         return;
-            //       }
-            //
-            //       var $ = cheerio.load(sres.text);
-            //
-            //       var nameWrapper = $('.f18.in-block.vertival-middle');
-            //       var telWrapper = $('.in-block.vertical-top.overflow-width.mr20').eq(0).children().eq(1);
-            //       var emailWrapper = $('.in-block.vertical-top.overflow-width.emailWidth').eq(0);
-            //       var hrefWrapper = $('.in-block.vertical-top.overflow-width.mr20').eq(1).children().eq(1);
-            //       var addressWrapper = $('.in-block.vertical-top.overflow-width.emailWidth').eq(1);
-            //
-            //       var name = nameWrapper.text()
-            //       var tel = telWrapper.text()
-            //       var email = emailWrapper.text()
-            //       var href = hrefWrapper.text()
-            //       var address = addressWrapper.text()
-            //
-            //       console.log('===========================================================================')
-            //       console.log(name)
-            //       console.log(tel)
-            //       console.log(email)
-            //       console.log(href)
-            //       console.log(address)
-            //
-            //     });
+            superagent.get(urlsArray[Math.floor(Math.random()*urlsArray.length)])
+                .end(function(err,sres){
+                  // 常规的错误处理
+                  if (err) {
+                    console.log(err);
+                    return;
+                  }
+
+                  var $ = cheerio.load(sres.text);
+
+                  var nameWrapper = $('.f18.in-block.vertival-middle');
+                  var telWrapper = $('.in-block.vertical-top.overflow-width.mr20').eq(0).children().eq(1);
+                  var emailWrapper = $('.in-block.vertical-top.overflow-width.emailWidth').eq(0);
+                  var hrefWrapper = $('.in-block.vertical-top.overflow-width.mr20').eq(1).children().eq(1);
+                  var addressWrapper = $('.in-block.vertical-top.overflow-width.emailWidth').eq(1);
+
+                  var name = nameWrapper.text()
+                  var tel = telWrapper.text()
+                  var email = emailWrapper.text()
+                  var href = hrefWrapper.text()
+                  var address = addressWrapper.text()
+
+                  console.log('===========================================================================')
+                  console.log(name)
+                  console.log(tel)
+                  console.log(email)
+                  console.log(href)
+                  console.log(address)
+
+                });
           })
     })
   }
@@ -97,7 +95,7 @@ function start2() {
 
     res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});
 
-    superagent.get('http://www.tianyancha.com/search/p2')
+    superagent.get('http://www.tianyancha.com/company/22822')
         .set('header', header)
         .proxy(proxy)
         .end(function(err,sres){
