@@ -139,7 +139,7 @@ async.waterfall(tasks, function (err, result) {
     }, delay);
   };
 
-  async.mapLimit(infoUrls, 1, function (url, callback) {
+  async.mapLimit(infoUrls, 2, function (url, callback) {
     fetchInfo(url, callback)
   }, function (err, result) {
     if (err) {
